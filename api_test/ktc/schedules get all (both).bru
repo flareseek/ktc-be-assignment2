@@ -1,0 +1,16 @@
+meta {
+  name: schedules get all (both)
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:4040/schedules?author=addddminn&modifiedAt=2025-05-24
+  body: none
+  auth: inherit
+}
+
+params:query {
+  author: addddminn
+  modifiedAt: 2025-05-24
+}

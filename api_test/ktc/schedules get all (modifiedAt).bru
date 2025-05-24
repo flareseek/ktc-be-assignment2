@@ -1,0 +1,15 @@
+meta {
+  name: schedules get all (modifiedAt)
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:4040/schedules?modifiedAt=2025-05-24
+  body: none
+  auth: inherit
+}
+
+params:query {
+  modifiedAt: 2025-05-24
+}

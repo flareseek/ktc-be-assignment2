@@ -1,0 +1,11 @@
+meta {
+  name: schedules get (bad request)
+  type: http
+  seq: 9
+}
+
+get {
+  url: http://localhost:4040/schedules/99990
+  body: none
+  auth: inherit
+}

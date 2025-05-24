@@ -1,0 +1,18 @@
+meta {
+  name: schedules create (bad request)
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:4040/schedules
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "todo": "test test",
+    "author": "adminn",
+  }
+}
