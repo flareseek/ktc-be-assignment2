@@ -1,0 +1,18 @@
+meta {
+  name: schedules delete (wrong pwd)
+  type: http
+  seq: 14
+}
+
+delete {
+  url: http://localhost:4040/schedules/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "password":"1231232p"
+  }
+  
+}

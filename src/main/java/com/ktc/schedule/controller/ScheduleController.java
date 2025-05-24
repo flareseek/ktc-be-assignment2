@@ -1,5 +1,6 @@
 package com.ktc.schedule.controller;
 
+import com.ktc.schedule.dto.PasswordDto;
 import com.ktc.schedule.dto.ScheduleRequestDto;
 import com.ktc.schedule.dto.ScheduleResponseDto;
 import com.ktc.schedule.service.ScheduleService;
@@ -33,5 +34,20 @@ public class ScheduleController {
     @GetMapping("/{id}")
     public ResponseEntity<ScheduleResponseDto> getOne(@PathVariable int id) {
         return ResponseEntity.ok(service.findOne(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ScheduleResponseDto> update(
+            @PathVariable int id,
+            @RequestBody ScheduleRequestDto dto) {
+        return ResponseEntity.ok(service.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(
+            @PathVariable int id,
+            @RequestBody PasswordDto dto) {
+        service.delete(id, dto);
+        return ResponseEntity.noContent().build();
     }
 }

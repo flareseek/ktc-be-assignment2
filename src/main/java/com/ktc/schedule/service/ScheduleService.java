@@ -1,5 +1,6 @@
 package com.ktc.schedule.service;
 
+import com.ktc.schedule.dto.PasswordDto;
 import com.ktc.schedule.dto.ScheduleRequestDto;
 import com.ktc.schedule.dto.ScheduleResponseDto;
 import com.ktc.schedule.model.Schedule;
@@ -53,5 +54,30 @@ public class ScheduleService {
                 s.getId(), s.getTodo(), s.getAuthor(),
                 s.getCreatedAt(), s.getUpdatedAt()
         );
+    }
+
+    public ScheduleResponseDto update(int id, ScheduleRequestDto dto) {
+        Schedule s = repo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "일정을 찾을 수 없습니다."));
+        if (!s.getPassword().equals(dto.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다.");
+        }
+        s.setTodo(dto.getTodo());
+        s.setAuthor(dto.getAuthor());
+        s.setUpdatedAt(LocalDateTime.now());
+        repo.update(s);
+        return new ScheduleResponseDto(
+                s.getId(), s.getTodo(), s.getAuthor(),
+                s.getCreatedAt(), s.getUpdatedAt()
+        );
+    }
+
+    public void delete(int id, PasswordDto dto) {
+        Schedule s = repo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "일정을 찾을 수 없습니다."));
+        if (!s.getPassword().equals(dto.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다.");
+        }
+        repo.deleteById(id);
     }
 }

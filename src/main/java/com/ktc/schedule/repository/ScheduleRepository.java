@@ -67,4 +67,18 @@ public class ScheduleRepository {
         );
         return list.stream().findFirst();
     }
+
+    public int update(Schedule schedule) {
+        String sql = "UPDATE schedules SET todo=?, author=?, updated_at=? WHERE id=?";
+        return jdbc.update(sql,
+                schedule.getTodo(),
+                schedule.getAuthor(),
+                schedule.getUpdatedAt(),
+                schedule.getId()
+        );
+    }
+
+    public int deleteById(int id) {
+        return jdbc.update("DELETE FROM schedules WHERE id=?", id);
+    }
 }
