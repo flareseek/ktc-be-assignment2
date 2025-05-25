@@ -289,3 +289,4 @@
 
 
 # DB ERD
+<img width="311" alt="SCR-20250525-mrxu" src="https://github.com/user-attachments/assets/c64210f0-efaf-4835-b68f-edb22b427d1b" />
